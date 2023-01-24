@@ -18,7 +18,9 @@ application {
 }
 
 repositories {
-    mavenCentral()
+    mavenCentral {
+        isAllowInsecureProtocol = true
+    }
 }
 
 dependencies {

@@ -15,7 +15,7 @@ fun Application.configureRouting() {
             call.respondText("bar")
         }
         get("baz") {
-            call.respondText("qux")
+            call.respondText("zap")
         }
         get("buzz") {
             call.respondBytes("buzz".toByteArray())

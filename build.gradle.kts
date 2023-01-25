@@ -18,8 +18,8 @@ application {
 }
 
 repositories {
-    jcenter() {
-        uri("https://jcenter.bintray.com/")
+//    mavenCentral()
+    maven {
         isAllowInsecureProtocol = true
     }
 }

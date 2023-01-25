@@ -20,7 +20,7 @@ application {
 repositories {
 //    mavenCentral()
     maven {
-        url = uri("http://35.227.81.243/artifactory/gradle-virtual")
+        url = uri("http://35.227.81.243:8081/artifactory/gradle-virtual")
         isAllowInsecureProtocol = true
     }
 }

@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.8.0"
     id("io.ktor.plugin") version "2.2.2"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
+    id("com.jfrog.artifactory") version "4.31.0"
 }
 
 group = "com.example"

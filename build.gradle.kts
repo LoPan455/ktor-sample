@@ -25,9 +25,7 @@ kotlin {
 }
 
 repositories {
-    maven {
-        url = uri("https://tomjfrog.jfrog.io/artifactory/ktorsample-gradle-dev")
-    }
+    mavenCentral()
 }
 
 dependencies {
@@ -36,6 +34,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktor_version")
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("commons-fileupload:commons-fileupload:1.4")
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
     testImplementation("io.ktor:ktor-server-test-host-jvm:2.2.2")

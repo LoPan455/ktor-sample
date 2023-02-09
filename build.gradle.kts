@@ -1,15 +1,13 @@
 val ktor_version: String by project
 val kotlin_version: String by project
 val logback_version: String by project
-val artifactory_user: String by project
-val artifactory_password: String by project
-val artifactory_contextUrl: String by project
 
 plugins {
     kotlin("jvm") version "1.8.0"
     id("io.ktor.plugin") version "2.2.2"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
     `maven-publish`
+    id("com.jfrog.artifactory") version "4.31.1"
 }
 
 group = "com.tjdevlab"

@@ -48,7 +48,7 @@ pipeline {
         stage('Exec Gradle') {
             steps {
                 rtGradleRun(
-                        usesPlugin: false, // Artifactory plugin already defined in build script
+                        usesPlugin: true, // Artifactory plugin already defined in build script
                         useWrapper: true,
                         rootDir: "./",
                         tasks: 'clean artifactoryPublish',
@@ -63,10 +63,6 @@ pipeline {
                 rtBuildInfo (
                         buildName: "SomeBuildName",
                         captureEnv: true
-                )
-                rtServer (
-                        id: "ARTIFACTORY_SERVER",
-                        credentialsId: CREDENTIALS
                 )
                 rtPublishBuildInfo (
                         serverId: "ARTIFACTORY_SERVER"

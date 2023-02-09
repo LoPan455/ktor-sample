@@ -65,7 +65,7 @@ pipeline {
                 )
                 echo 'Publishing build info'
                 rtPublishBuildInfo (
-                        serverId: "ARTIFACTORY_SERVER"
+                        serverId: "https://tomjfrog.jfrog.io"
                 )
             }
         }

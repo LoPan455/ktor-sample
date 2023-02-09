@@ -11,7 +11,7 @@ pipeline {
         }
         stage ('Clone') {
             steps {
-                git branch: 'master', url: "https://github.com/LoPan455/ktor-sample.git"
+                git branch: 'main', url: "https://github.com/LoPan455/ktor-sample.git"
             }
         }
         stage('Artifactory Configuration') {

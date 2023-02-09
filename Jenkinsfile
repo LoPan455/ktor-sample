@@ -9,6 +9,11 @@ pipeline {
                 cleanWs()
             }
         }
+        stage ('Clone') {
+            steps {
+                git branch: 'master', url: "https://github.com/LoPan455/ktor-sample.git"
+            }
+        }
         stage('Artifactory Configuration') {
             steps {
                 rtServer(

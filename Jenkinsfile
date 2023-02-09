@@ -43,9 +43,9 @@ pipeline {
         stage('Exec Gradle') {
             steps {
                 rtGradleRun(
-                        usesPlugin: true, // Artifactory plugin already defined in build script
+                        usesPlugin: false, // Artifactory plugin already defined in build script
                         useWrapper: true,
-                        tool: GRADLE_TOOL, // Tool name from Jenkins configuration
+//                        tool: GRADLE_TOOL, // Tool name from Jenkins configuration
                         rootDir: "./",
                         tasks: 'clean artifactoryPublish',
                         deployerId: "GRADLE_DEPLOYER",

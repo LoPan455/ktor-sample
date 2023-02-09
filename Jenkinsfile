@@ -1,0 +1,64 @@
+pipeline {
+
+    agent any
+
+    stages {
+        stage('clean') {
+            steps {
+                echo 'Cleaning workspace'
+                cleanWs()
+            }
+        }
+        stage('Artifactory Configuration') {
+            steps {
+                rtServer(
+                        id: 'ARTIFACTORY_SERVER',
+                        url: 'SERVER_URL',
+                        credentialsId: CREDENTIALS,
+                        timeout: 20
+                )
+                rtGradleResolver(
+                        id: "GRADLE_RESOLVER",
+                        serverId: "ARTIFACTORY_SERVER",
+                        repo: PROJECT_VIRTUAL_REPO
+                )
+                rtGradleDeployer(
+                        id: "GRADLE_DEPLOYER",
+                        serverId: "ARTIFACTORY_SERVER",
+                        repo: PROJECT_VIRTUAL_REPO,
+                        properties: ['foo=bar', 'fizz=buzz'],
+                        publications: ["mavenJava", "ivyJava"]
+                )
+            }
+        }
+        stage('Config Build Info') {
+            steps {
+                rtBuildInfo(
+                        captureEnv: true,
+                        includeEnvPatterns: ["*"],
+                        excludeEnvPatterns: ["DONT_COLLECT*"]
+                )
+            }
+        }
+        stage('Exec Gradle') {
+            steps {
+                rtGradleRun(
+                        usesPlugin: true, // Artifactory plugin already defined in build script
+                        useWrapper: true,
+                        tool: GRADLE_TOOL, // Tool name from Jenkins configuration
+                        rootDir: "./",
+                        tasks: 'clean artifactoryPublish',
+                        deployerId: "GRADLE_DEPLOYER",
+                        resolverId: "GRADLE_RESOLVER"
+                )
+            }
+        }
+        stage ('Publish build info') {
+            steps {
+                rtPublishBuildInfo (
+                        serverId: "ARTIFACTORY_SERVER"
+                )
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     stages {
-        stage('clean') {
+        stage('Clean') {
             steps {
                 echo 'Cleaning workspace'
                 cleanWs()
@@ -50,7 +50,6 @@ pipeline {
                 rtGradleRun(
                         usesPlugin: false, // Artifactory plugin already defined in build script
                         useWrapper: true,
-//                        tool: GRADLE_TOOL, // Tool name from Jenkins configuration
                         rootDir: "./",
                         tasks: 'clean artifactoryPublish',
                         deployerId: "GRADLE_DEPLOYER",
@@ -60,6 +59,7 @@ pipeline {
         }
         stage ('Publish build info') {
             steps {
+                echo 'Publishing build info'
                 rtPublishBuildInfo (
                         serverId: "ARTIFACTORY_SERVER"
                 )

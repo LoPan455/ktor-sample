@@ -59,11 +59,11 @@ pipeline {
         }
         stage ('Publish build info') {
             steps {
+                echo 'Publishing build info'
                 rtBuildInfo (
-                        buildName: "Some Build Name",
+                        buildName: "SomeBuildName",
                         captureEnv: true
                 )
-                echo 'Publishing build info'
                 rtPublishBuildInfo (
                         serverId: "ARTIFACTORY_SERVER"
                 )

@@ -64,6 +64,10 @@ pipeline {
                         buildName: "SomeBuildName",
                         captureEnv: true
                 )
+                rtServer (
+                        id: "ARTIFACTORY_SERVER",
+                        credentialsId: CREDENTIALS
+                )
                 rtPublishBuildInfo (
                         serverId: "ARTIFACTORY_SERVER"
                 )

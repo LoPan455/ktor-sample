@@ -16,12 +16,12 @@ pipeline {
         }
         stage('Artifactory Configuration') {
             steps {
-                rtServer(
-                        serverId: 'ARTIFACTORY_SERVER',
-                        url: 'SERVER_URL',
-                        credentialsId: CREDENTIALS,
-                        timeout: 20
-                )
+//                rtServer(
+//                        serverId: 'ARTIFACTORY_SERVER',
+//                        url: 'SERVER_URL',
+//                        credentialsId: CREDENTIALS,
+//                        timeout: 20
+//                )
                 rtGradleResolver(
                         id: "GRADLE_RESOLVER",
                         serverId: "ARTIFACTORY_SERVER",

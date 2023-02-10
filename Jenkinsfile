@@ -18,7 +18,7 @@ pipeline {
             steps {
                 rtServer(
                         id: 'ARTIFACTORY_SERVER',
-                        url: 'https://tomjfrog.jfrog.io/artifactory/',
+                        url: "${params.SERVER_URL}",
                         credentialsId: CREDENTIALS,
                         timeout: 20
                 )

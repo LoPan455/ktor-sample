@@ -7,7 +7,7 @@ plugins {
     id("io.ktor.plugin") version "2.2.2"
     id("org.jetbrains.kotlin.plugin.serialization") version "1.8.0"
     `maven-publish`
-    id("com.jfrog.artifactory") version "4.31.1"
+//    id("com.jfrog.artifactory") version "4.31.1"
 }
 
 group = "com.tjdevlab"

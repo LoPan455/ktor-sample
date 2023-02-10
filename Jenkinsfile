@@ -23,14 +23,14 @@ pipeline {
 //                        timeout: 20
 //                )
                 rtGradleResolver(
-                        id: "GRADLE_RESOLVER",
+                        id: "${params.GRADLE_RESOLVER}",
                         serverId: "${params.ARTIFACTORY_SERVER}",
-                        repo: PROJECT_VIRTUAL_REPO
+                        repo: "${params.PROJECT_VIRTUAL_REPO}",
                 )
                 rtGradleDeployer(
-                        id: "GRADLE_DEPLOYER",
+                        id: "${params.GRADLE_DEPLOYER}",
                         serverId: "${params.ARTIFACTORY_SERVER}",
-                        repo: PROJECT_VIRTUAL_REPO,
+                        repo: "${params.PROJECT_VIRTUAL_REPO}",
                         properties: ['foo=bar', 'fizz=buzz'],
                         publications: ["mavenJava", "ivyJava"]
                 )
@@ -52,8 +52,8 @@ pipeline {
                         useWrapper: true,
                         rootDir: "./",
                         tasks: 'clean artifactoryPublish',
-                        deployerId: "GRADLE_DEPLOYER",
-                        resolverId: "GRADLE_RESOLVER"
+                        deployerId: "${params.GRADLE_DEPLOYER}",
+                        resolverId: "${params.GRADLE_RESOLVER}"
                 )
             }
         }
@@ -65,7 +65,7 @@ pipeline {
                         captureEnv: true
                 )
                 rtPublishBuildInfo (
-                        serverId: $params.ARTIFACTORY_SERVER
+                        serverId: "{$params.ARTIFACTORY_SERVER}"
                 )
             }
         }

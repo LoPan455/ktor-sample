@@ -24,12 +24,12 @@ pipeline {
 //                )
                 rtGradleResolver(
                         id: "GRADLE_RESOLVER",
-                        serverId: $params.ARTIFACTORY_SERVER,
+                        serverId: ${params.ARTIFACTORY_SERVER},
                         repo: PROJECT_VIRTUAL_REPO
                 )
                 rtGradleDeployer(
                         id: "GRADLE_DEPLOYER",
-                        serverId: $params.ARTIFACTORY_SERVER,
+                        serverId: ${params.ARTIFACTORY_SERVER},
                         repo: PROJECT_VIRTUAL_REPO,
                         properties: ['foo=bar', 'fizz=buzz'],
                         publications: ["mavenJava", "ivyJava"]

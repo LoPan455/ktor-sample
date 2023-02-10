@@ -16,20 +16,20 @@ pipeline {
         }
         stage('Artifactory Configuration') {
             steps {
-//                rtServer(
-//                        serverId: 'ARTIFACTORY_SERVER',
-//                        url: 'SERVER_URL',
-//                        credentialsId: CREDENTIALS,
-//                        timeout: 20
-//                )
+                rtServer(
+                        id: 'ARTIFACTORY_SERVER',
+                        url: 'https://tomjfrog.jfrog.io/artifactory/',
+                        credentialsId: CREDENTIALS,
+                        timeout: 20
+                )
                 rtGradleResolver(
                         id: "${params.GRADLE_RESOLVER}",
-                        serverId: "${params.ARTIFACTORY_SERVER}",
+                        serverId: ARTIFACTORY_SERVER,
                         repo: "${params.PROJECT_VIRTUAL_REPO}",
                 )
                 rtGradleDeployer(
                         id: "${params.GRADLE_DEPLOYER}",
-                        serverId: "${params.ARTIFACTORY_SERVER}",
+                        serverId: ARTIFACTORY_SERVER,
                         repo: "${params.PROJECT_VIRTUAL_REPO}",
                         properties: ['foo=bar', 'fizz=buzz'],
                         publications: ["mavenJava", "ivyJava"]
@@ -65,7 +65,7 @@ pipeline {
                         captureEnv: true
                 )
                 rtPublishBuildInfo (
-                        serverId: "{$params.ARTIFACTORY_SERVER}"
+                        serverId: ARTIFACTORY_SERVER
                 )
             }
         }

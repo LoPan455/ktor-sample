@@ -17,7 +17,7 @@ pipeline {
         stage('Artifactory Configuration') {
             steps {
                 rtServer(
-                        id: 'ARTIFACTORY_SERVER',
+                        serverId: 'ARTIFACTORY_SERVER',
                         url: 'SERVER_URL',
                         credentialsId: CREDENTIALS,
                         timeout: 20

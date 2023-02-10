@@ -24,12 +24,12 @@ pipeline {
 //                )
                 rtGradleResolver(
                         id: "GRADLE_RESOLVER",
-                        serverId: "ARTIFACTORY_SERVER",
+                        serverId: $params.ARTIFACTORY_SERVER,
                         repo: PROJECT_VIRTUAL_REPO
                 )
                 rtGradleDeployer(
                         id: "GRADLE_DEPLOYER",
-                        serverId: "ARTIFACTORY_SERVER",
+                        serverId: $params.ARTIFACTORY_SERVER,
                         repo: PROJECT_VIRTUAL_REPO,
                         properties: ['foo=bar', 'fizz=buzz'],
                         publications: ["mavenJava", "ivyJava"]
@@ -65,7 +65,7 @@ pipeline {
                         captureEnv: true
                 )
                 rtPublishBuildInfo (
-                        serverId: "ARTIFACTORY_SERVER"
+                        serverId: $params.ARTIFACTORY_SERVER
                 )
             }
         }
